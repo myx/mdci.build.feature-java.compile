@@ -1,0 +1,5 @@
+echo "📘 syntax: CompileCachedJavaRepository.fn.sh <repository-name>" >&2
+echo "📘 syntax: CompileCachedJavaRepository.fn.sh [--help]" >&2
+if [ "$1" = "--help" ]; then
+	myx.common lib/catMarkdown "$MDSC_SOURCE/myx/mdci-packages-myx/build.feature-java.compile/sh-lib/help/Help.CompileCachedJavaRepository.help.md" >&2
+fi

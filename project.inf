@@ -1,0 +1,15 @@
+Name: build.feature-java.compile
+Requires: \
+	myx/myx.distro-source \
+
+Provides: \
+	standard/build.feature-java.compile \
+	build-tool:pack.jar \
+	build-tool:pack.java.jar \
+	build-tool:classpath.jar \
+	build-tool:classpath.java.jar \
+	build-tool:classpath.use.jars \
+
+Declares: \
+	custom-commands-path:sh-scripts \
+

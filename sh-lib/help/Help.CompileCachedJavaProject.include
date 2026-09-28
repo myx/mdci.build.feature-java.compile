@@ -1,0 +1,7 @@
+echo "📘 syntax: CompileCachedJavaProject.fn.sh <project-name>" >&2
+echo "📘 syntax: CompileCachedJavaProject.fn.sh --project-from-env" >&2
+echo "📘 syntax: CompileCachedJavaProject.fn.sh --project-from-pwd" >&2
+echo "📘 syntax: CompileCachedJavaProject.fn.sh [--help]" >&2
+if [ "$1" = "--help" ]; then
+	myx.common lib/catMarkdown "$MDSC_SOURCE/myx/mdci-packages-myx/build.feature-java.compile/sh-lib/help/Help.CompileCachedJavaProject.help.md" >&2
+fi
