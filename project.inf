@@ -1,6 +1,6 @@
 Name: build.feature-java.compile
 Requires: \
-	myx/myx.distro-source \
+	
 
 Provides: \
 	standard/build.feature-java.compile \
