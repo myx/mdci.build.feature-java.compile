@@ -20,7 +20,7 @@ CompileCachedJavaRepository(){
 	( \
 		. "$MDSC_SOURCE/myx/mdci-packages-myx/build.feature-java.compile/sh-lib/RunJavaClassSource.include" ;
 		RunJavaClassSource \
-			myx/myx.distro-source \
+			myx/myx.distro-system \
 			ru.myx.distro.prepare.MakeCompileSources \
 			--cached-root "$MMDAPP/.local/source-cache/prepare" \
 			--source-root "$MMDAPP/.local/source-cache/sources" \
