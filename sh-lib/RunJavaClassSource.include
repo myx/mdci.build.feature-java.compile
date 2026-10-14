@@ -12,12 +12,21 @@ RunJavaClassSource(){
 		shift 2
 	fi
 	
-	local DST_PATH="$MMDAPP/.local/output-cache/distro/$SRC_NAME/java"
+	local DST_ROOT="$MMDAPP/.local/output-cache/distro/$SRC_NAME"
+	mkdir -p "$DST_ROOT"
+	# Several jobs of the parallel source-process builder call this for the same
+	# $SRC_NAME/$CLS_NAME at once. A shared compile destination let one job's
+	# "java" open a class file while another job's "javac" was still (re)writing
+	# it there -- "LinkageError: Truncated class file". A private, per-call folder
+	# removes the sharing; nothing reads this path afterwards.
+	local DST_PATH; DST_PATH="$( mktemp -d "$DST_ROOT/java.XXXXXX" )" || return 1
+	# The path is written into the trap now, and the trap takes itself off when it fires: a RETURN trap
+	# otherwise stays in the calling shell and would remove whatever "$DST_PATH" names there later.
+	trap "rm -rf -- $( printf '%q' "$DST_PATH" ); trap - RETURN" RETURN
 
 	local SRC_PATH="${MDSC_SOURCE:-$MMDAPP/source}/$SRC_NAME/java"
 
 	CLS_PATH="$DST_PATH:$CLS_PATH"
-	mkdir -p "$DST_PATH"
 	
 	[ -z "$MDSC_DETAIL" ] || {
 		echo ">> RunJavaClassSource: Running $CLS_NAME @ $SRC_NAME, class path: $CLS_PATH" >&2
